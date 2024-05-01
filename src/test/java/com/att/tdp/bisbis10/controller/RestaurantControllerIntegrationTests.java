@@ -53,8 +53,14 @@ public class RestaurantControllerIntegrationTests {
 
     @Test
     public void testGetRestaurant_ById() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/restaurants/1", 1))
+        mockMvc.perform(MockMvcRequestBuilders.get("/restaurants/{restaurantId}", 1))
                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void testGetRestaurant_ById_NotFound() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/restaurants/{restaurantId}", 900))
+               .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     // TODO - investigate
@@ -85,7 +91,7 @@ public class RestaurantControllerIntegrationTests {
         "    ]" +
         "}";
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/restaurants/100", 1)
+        mockMvc.perform(MockMvcRequestBuilders.put("/restaurants/{restaurantId}", 1)
                .content(restaurant)
                .contentType("application/json"))
                .andExpect(MockMvcResultMatchers.status().isOk());
