@@ -20,14 +20,14 @@ Candidates are expected to design and implement the above APIs, adhering to REST
 
 ### Restaurants APIs
 
-| API Description               | Endpoint                              | Request Body                                                                  | Response Status | Response Body |
-|-------------------------------|---------------------------------------|-------------------------------------------------------------------------------|-----------------|--------------------------------------------------------------------------------------------------------|
-| Get all restaurants           | GET /restaurants                      |                                                                               | 200 OK          | [{"id": "1","name": "Taizu","averageRating" : 4.83,"isKosher" : false,"cuisines": ["Asian","Mexican","Indian"]}] |
-| Get restaurants by cuisine    | GET /restaurants?cuisine={cuisine}    |                                                                               | 200 OK          | [{"id": "1","name": "Taizu","averageRating" : 4.83,"isKosher" : false,"cuisines": ["Asian","Mexican","Indian"]}] |
-| Get restaurant                | GET /restaurants/{id}                 |                                                                               | 200 OK          | {"id": "1","name": "Taizu","averageRating" : 4.83,"isKosher" : false,"cuisines": ["Asian","Mexican","Indian"],"dishes": [{"id": "1","name": "Noodles","description": "Amazing one","price": 59}]} |
-| Add a restaurant              | POST /restaurants                     | {"name": "Taizu","isKosher": false,"cuisines": ["Asian","Mexican","Indian"]}  | 201 CREATED     | {"id": "1","name": "Taizu","averageRating" : 0.00,"isKosher" : false,"cuisines": ["Asian","Mexican","Indian"]} |
-| Update a restaurant           | PUT /restaurants/{id}                 | {"cuisines": ["Asian"]}                                                       | 200 OK          | {"id": "1","name": "Taizu","averageRating" : 4.83,"isKosher" : false,"cuisines": ["Asian"]} |
-| Delete a restaurant           | DELETE /restaurants/{id}              |                                                                               | 204 No Content  | |
+| API Description               | Endpoint                                                              | Request Body                                                                  | Response Status | Response Body |
+|-------------------------------|-----------------------------------------------------------------------|-------------------------------------------------------------------------------|-----------------|--------------------------------------------------------------------------------------------------------|
+| Get all restaurants           | GET /restaurants?page={page}&pageSize={pageSize}                      |                                                                               | 200 OK          | [{"id": "1","name": "Taizu","averageRating" : 4.83,"isKosher" : false,"cuisines": ["Asian","Mexican","Indian"]}] |
+| Get restaurants by cuisine    | GET /restaurants?cuisine={cuisine}&page={page}&pageSize={pageSize}    |                                                                               | 200 OK          | [{"id": "1","name": "Taizu","averageRating" : 4.83,"isKosher" : false,"cuisines": ["Asian","Mexican","Indian"]}] |
+| Get restaurant                | GET /restaurants/{id}                                                 |                                                                               | 200 OK          | {"id": "1","name": "Taizu","averageRating" : 4.83,"isKosher" : false,"cuisines": ["Asian","Mexican","Indian"],"dishes": [{"id": "1","name": "Noodles","description": "Amazing one","price": 59}]} |
+| Add a restaurant              | POST /restaurants                                                     | {"name": "Taizu","isKosher": false,"cuisines": ["Asian","Mexican","Indian"]}  | 201 CREATED     | {"id": "1","name": "Taizu","averageRating" : 0.00,"isKosher" : false,"cuisines": ["Asian","Mexican","Indian"]} |
+| Update a restaurant           | PUT /restaurants/{id}                                                 | {"cuisines": ["Asian"]}                                                       | 200 OK          | {"id": "1","name": "Taizu","averageRating" : 4.83,"isKosher" : false,"cuisines": ["Asian"]} |
+| Delete a restaurant           | DELETE /restaurants/{id}                                              |                                                                               | 204 No Content  | |
 
 ### Ratings APIs
 
@@ -54,7 +54,7 @@ amount: min = 1
 | Add a dish                | POST /restaurants/{id}/dishes | {"name":"Shakshuka","description":"Great one","price": 34} | 201 CREATED     | {"id":"2","name":"Shakshuka","description":"Great one","price": 34} |
 | Update a dish             | PUT /restaurants/{id}/dishes/{dishId} | {"description":"The Best!","price": 35} | 200 OK          | {"id":"2","name":"Shakshuka","description":"The Best!","price": 35} |
 | Delete a dish             | DELETE /restaurants/{id}/dishes/{dishId} |                                        | 204 No Content  |                                                                  |
-| Get dishes by a restaurant| GET /restaurants/{id}/dishes  |                                         | 200 OK          | [{"id":"1","name":"Humus","description":"Good one","price": 48}] |
+| Get dishes by a restaurant| GET /restaurants/{id}/dishes?page={page}&pageSize={pageSize}  |                                         | 200 OK          | [{"id":"1","name":"Humus","description":"Good one","price": 48}] |
 
 #### Constraints Note:
 price: min = 0
